@@ -1,6 +1,6 @@
 import os
 from langchain.document_loaders import PyPDFLoader, TextLoader
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.text_splitter import RecursiveCharacterTextSplitter, CharacterTextSplitter
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.vectorstores import Pinecone
 from langchain.chains import RetrievalQAWithSourcesChain
@@ -15,7 +15,8 @@ pinecone.init(
 )
 
 index_name = "chain-demo"
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+#text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
+text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
 embeddings = OpenAIEmbeddings()
 
 namespaces = set()
