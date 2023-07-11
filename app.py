@@ -75,9 +75,9 @@ def langchain_factory():
         namespaces.add(namespace)
 
     chain = RetrievalQAWithSourcesChain.from_chain_type(
-        ChatOpenAI(temperature=0, streaming=True),
+        ChatOpenAI(model_name='gpt-3.5-turbo-16k',temperature=0, streaming=True),
         chain_type="stuff",
-        retriever=docsearch.as_retriever(max_tokens_limit=4097),
+        retriever=docsearch.as_retriever(max_tokens_limit=8000),
     )
 
     # Let the user know that the system is ready
